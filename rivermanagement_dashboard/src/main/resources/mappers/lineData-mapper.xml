@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="lineDataMapper">
+
+	<!-- 여기에 작성 -->
+	
+	<resultMap type="LineData" id="_lineData">
+      	<result property="cameraName" column="camera_name" />
+      	<result property="cnt" column="cnt" />
+      	<result property="logDate" column="log_date" />
+	</resultMap> 
+	
+	
+	  <resultMap id="_int" type="java.lang.Integer"/>
+	
+	
+	
+	
+	<!-- 막대차트 -->
+	<select id="daliyCountList" resultMap="_lineData">
+		DECLARE
+			@tb_temp_camera
+			TABLE
+			(
+			camera_name NVARCHAR(50)
+			, cnt INT
+			)
+			INSERT INTO @tb_temp_camera
+			SELECT TOP 10
+			camera_name
+			, COUNT(camera_name) AS cnt
+			FROM TB_CIRCUIT_BREAKER_LOG
+			WHERE CONVERT(VARCHAR(7), log_date, 120) = LEFT(#{occuDate}, 7)
+
+			GROUP BY camera_name
+			ORDER BY cnt DESC
+			SELECT
+			GLOG.log_date
+			, GLOG.camera_name
+			, COUNT(GLOG.log_date) AS cnt
+			FROM TB_CIRCUIT_BREAKER_LOG GLOG
+			WHERE CONVERT(VARCHAR(7), GLOG.log_date, 120) = LEFT(#{occuDate}, 7)
+
+			AND GLOG.camera_name IN (SELECT camera_name FROM @tb_temp_camera)
+			GROUP BY GLOG.log_date, GLOG.camera_name
+			ORDER BY GLOG.log_date, GLOG.camera_name
+	</select>
+	
+
+
+</mapper>
