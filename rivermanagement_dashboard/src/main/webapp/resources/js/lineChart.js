@@ -30,7 +30,7 @@ function lineChart(data) {
         },
         legend: {
             orient: 'vertical',
-            right: '2%', // 오른쪽으로 이동
+            right: '1.5%', // 오른쪽으로 이동
             top: 'middle', // 세로 중앙 정렬
             textStyle: {
                 color: '#FFFFF' 
@@ -39,7 +39,7 @@ function lineChart(data) {
         },
         grid: {
             left: '3%',
-            right: '15%',
+            right: '20%',
             bottom: '5%',
             containLabel: true
         },
