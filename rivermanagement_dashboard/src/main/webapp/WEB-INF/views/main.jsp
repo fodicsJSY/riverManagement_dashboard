@@ -185,7 +185,7 @@
                         <div class="titleBox">
                             <div class="titleText01">실시간 유량</div>
                         </div>
-                        <div class="dataBox tablebox">
+                        <div class="dataBox">
                             <div id="streamFlowChart" style="width: 100%; height: 100%;">
                             </div>
                         </div>
