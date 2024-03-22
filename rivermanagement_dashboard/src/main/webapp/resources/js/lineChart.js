@@ -90,6 +90,8 @@ function lineChart(data) {
     };
 
     dateDataChart.setOption(option);
+
+
 }
 
 

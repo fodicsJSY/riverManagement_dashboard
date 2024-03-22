@@ -14,13 +14,7 @@
 		<org.slf4j-version>1.7.25</org.slf4j-version>
 	</properties>
 	<dependencies>
-		<!-- jsch 터널링을 위해 필요합니다. -->
-		<dependency>
-		    <groupId>com.jcraft</groupId>
-		    <artifactId>jsch</artifactId>
-		    <version>0.1.55</version>
-		</dependency>
-	
+
 	
 
       <!-- 커넥션 풀 기능을 사용하기 위한 라이브러리 -->
@@ -192,7 +186,7 @@
 			<artifactId>javax.inject</artifactId>
 			<version>1</version>
 		</dependency>
-				
+		
 		<!-- Servlet 버전을 4.0으로 변경 -->
 		<!-- [https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api](https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api) -->
 		<dependency>

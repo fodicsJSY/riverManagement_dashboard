@@ -27,10 +27,7 @@ function liveInfomation(data){
     // console.log("cameraCount", cameraCount);
     // console.log("cameraIpList", cameraIpList);
 
-    gateTotalCount.innerHTML = `${gateLiveList[0].gateTotalCnt} 개소`;
-    gateOpenCount.innerHTML = `${gateLiveList[0].gateOpenCnt} 개소`;
-    gateCloseCount.innerHTML = `${gateLiveList[0].gateCloseCnt} 개소`;
-    noSignalGateCount.innerHTML = `${gateLiveList[0].gateDisableCnt} 개소`;
+
     totalSignalCount.innerHTML = `${cameraCount} 개소`;
 
 
