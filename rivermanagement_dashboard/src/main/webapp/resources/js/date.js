@@ -143,31 +143,130 @@ let data;
 function sendToServer(value) {
     // 형식을 YYYYMMDD로 변경
     let occuDate = formatToYYYYMMDD(value || forDate);
-    // console.log('Sending occuDate to server:', occuDate); // 콘솔에 occuDate 값 로그 출력
+    console.log('Sending occuDate to server:', occuDate); // 콘솔에 occuDate 값 로그 출력
 
-    fetch("/sendDate", { 
-        method : "POST", 
-        headers: {"Content-Type": "application/json;"}, 
-        body : JSON.stringify( {"occuDate":occuDate} ) 
-    })
-    .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
-    .then((result) => {
-        // console.log("result", result );
 
-        data = result;
 
-        // 차트호출
-        lineChart(data);
-        makeTable(data);
-        liveInfomation(data);
-        openDounutChart(data);
-        closeDounutChart(data);
+
+
+
+
+    // // fetchData2 함수를 호출하고 결과를 처리하는 예제
+    (async () => {
+        try {
+            await fetchData2();
+            // fetchData 함수에서 반환한 데이터를 이용하여 원하는 작업 수행
+        } catch (error) {
+            console.error('Error occurred:', error);
+        }
+    })();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //이전 DB연결 시 작성한 ajax문*******************************************************
+
+    // fetch("/sendDate", { 
+    //     method : "POST", 
+    //     headers: {"Content-Type": "application/json;"}, 
+    //     body : JSON.stringify( {"occuDate":occuDate} ) 
+    // })
+    // .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
+    // .then((result) => {
+    //     // console.log("result", result );
+
+    //     data = result;
+
+    //     // 차트호출
+    //     lineChart(data);
+    //     makeTable(data);
+    //     liveInfomation(data);
+    //     openDounutChart(data);
+    //     closeDounutChart(data);
 
         
-    }) // 첫 번째 then에서 파싱한 데이터를 이용한 동작 작성
-    .catch( err => {
-        // console.log("err : ", err);
-    }); // 예외 발생 시 처리할 내용을 작성
+    // }) // 첫 번째 then에서 파싱한 데이터를 이용한 동작 작성
+    // .catch( err => {
+    //     // console.log("err : ", err);
+    // }); // 예외 발생 시 처리할 내용을 작성.
+
+    //이전 DB연결 시 작성한 ajax문*******************************************************
+
+
+    
+    /************************ 외부 DB연결 select**************************/
+
+    // select
+    // let totalUrl = "http://172.16.103.34:8988/fnvr/request/query/select"
+    
+    
+    // fetch("/getDataFromAPI", { 
+    //     method : "POST", 
+    //     headers: {"Content-Type": "application/json;"}, 
+    //     credentials: "include",
+    //     body : JSON.stringify( {
+    //                             "serverip" : "172.16.0.93",
+    //                             "query": "SELECT SRV.site_code, CAM.camera_code, CAM.camera_name, CASE WHEN GIS_CAM.GIS_COORDINATE_X > 0 AND GIS_CAM.GIS_COORDINATE_Y > 0 THEN 1 ELSE 0 END AS gis_alloc, GIS_CAM.GIS_COORDINATE_X, GIS_CAM.GIS_COORDINATE_Y FROM TB_CAMERA CAM LEFT OUTER JOIN TB_SERVER_RECORD SRV ON type = 34 LEFT OUTER JOIN TB_GATE_CONTROL_GIS_CAMERA_INFO GIS_CAM ON SRV.site_code = GIS_CAM.SITE_CODE AND CAM.camera_code = GIS_CAM.CAMERA_CODE"
+    //                             } ) 
+    // })
+    // .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
+    // .then((result) => {
+    //     console.log("result", result );
+
+    //     // data = result;
+    //     // console.log("data : ", data);
+        
+        
+    // }) // 첫 번째 then에서 파싱한 데이터를 이용한 동작 작성
+    // .catch( err => {
+    //     // console.log("err : ", err);
+    // }); // 예외 발생 시 처리할 내용을 작성
+
+    /************************ 외부 DB연결 select**************************/
+
+
+    /************************ 외부 DB연결 execute**************************/
+
+    
+    // insert, update
+    // let totalUrl = "http://172.16.103.34:10443/fnvr/request/query/execute"
+    
+    // fetch("/getDataFromAPI", { 
+    //     method : "POST", 
+    //     headers: {"Content-Type": "application/json;"}, 
+    //     credentials: "include",
+    //     body : JSON.stringify( {
+    //                             "serverip" : "172.16.0.93",
+    //                             "query": "UPDATE TB_GATE_CONTROL_GIS_FVRT_INFO SET HOME_FLAG = CASE WHEN FVRT_CODE = 'FVRT_CODE' THEN 1 ELSE 0 END WHERE 1 = 1"
+    //                             } ) 
+    // })
+    // .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
+    // .then((result) => {
+    //     console.log("result", result );
+
+    //     // data = result;
+    //     // console.log("data : ", data);
+        
+        
+    // }) // 첫 번째 then에서 파싱한 데이터를 이용한 동작 작성
+    // .catch( err => {
+    //     // console.log("err : ", err);
+    // }); // 예외 발생 시 처리할 내용을 작성
+
+    /************************ 외부 DB연결 execute**************************/
+
+
 }
 
 
@@ -183,3 +282,220 @@ function formatToYYYYMMDD(dateString) {
     var day = date.getDate().toString().padStart(2, '0');
     return year + month + day;
 }
+
+
+
+
+
+
+
+
+
+
+// 라디오 버튼 요소 가져오기
+const waterLevelRadio = document.getElementById("waterLevel");
+const flowRateRadio = document.getElementById("flowRate");
+const streamFlowRadio = document.getElementById("streamFlow");
+
+let radioSelected = 0;
+
+
+// select박스 요소 가져오기
+let selectBox = document.getElementById("selectBox");
+
+
+async function fetchData(value) {
+
+    var DBip = "172.16.0.93";
+
+    // 형식을 YYYYMMDD로 변경
+    let occuDate = formatToYYYYMMDD(value || forDate);
+    console.log('Sending occuDate to server:', occuDate); // 콘솔에 occuDate 값 로그 출력
+
+
+
+    try {
+        // 테이블 호출
+        // const result1 = await fetch("/sendTableQuery", {
+        //     method: "POST",
+        //     headers: { "Content-Type": "application/json;" },
+        //     body: JSON.stringify({
+        //         "serverip": DBip,
+        //         "query": ""
+        //     })
+        // });
+
+        // if (!result1.ok) {
+        //     throw new Error('Network response was not ok');
+        // }
+
+        // const sendTableQuery = await result1.json();
+        // // console.log("sendTableQuery", sendTableQuery);
+        // // console.log("result1", result1);
+
+        // makeTable(sendTableQuery); 
+
+
+
+        //쿼리 수정해야 함.
+        // // 개문횟수
+        // const result2 = await fetch("/openGateList", {
+        //     method: "POST",
+        //     headers: { "Content-Type": "application/json;" },
+        //     body: JSON.stringify({
+        //         "serverip": "DBip",
+        //         "query": ""
+        //     })
+        // });
+
+        // if (!result2.ok) {
+        //     throw new Error('Network response was not ok');
+        // }
+
+        // const openGateList = await result2.json();
+        // console.log("Some other endpoint", result2);
+
+
+
+        //쿼리 수정해야 함.
+        // // 폐문횟수
+        // const result3 = await fetch("/closeGateList", {
+        //     method: "POST",
+        //     headers: { "Content-Type": "application/json;" },
+        //     body: JSON.stringify({
+        //         "serverip": "DBip",
+        //         "query": ""
+        //     })
+        // });
+
+        // if (!result3.ok) {
+        //     throw new Error('Network response was not ok');
+        // }
+
+        // const closeGateList = await result3.json();
+        // console.log("Some other endpoint", result3);
+
+
+
+        // 라디오 버튼 상태 확인
+        if (waterLevelRadio.checked) {
+            radioSelected = 1;
+            console.log("수위가 선택되었습니다.");
+        } else if (flowRateRadio.checked) {
+            radioSelected = 2;
+            console.log("유속이 선택되었습니다.");
+        } else{
+            radioSelected = 3;
+            console.log("유량이 선택되었습니다.");
+        } 
+
+        // select박스 상태 확인
+        let selectBoxValue = selectBox.value
+
+
+
+        // 쿼리 수정해야 함.
+        // 라인차트
+        const result4 = await fetch("/sendLineQuery", {
+            method: "POST",
+            headers: { "Content-Type": "application/json;" },
+            body: JSON.stringify({
+                    "radioSelected" : radioSelected,
+                    "selectBoxValue" : selectBoxValue,
+        //         "serverip": "DBip",
+        //         "query": ""
+            })
+        });
+
+        if (!result4.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const sendLineQuery = await result4.json();
+        console.log("Some other endpoint", sendLineQuery);
+
+
+
+
+
+        // 이와 같이 필요한 만큼 fetch 호출을 추가할 수 있습니다.
+
+
+
+
+
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error;
+    }
+}
+
+
+
+async function fetchData2() {
+    var DBip = "172.16.0.93";
+    try {
+        const cameraCountResp = await fetch("/cameraCount", {
+            method: "POST",
+            headers: { "Content-Type": "application/json;" },
+            body: JSON.stringify({
+                "serverip": DBip,
+                "query": "SELECT COUNT(ip_addr) AS camera_total_cnt FROM TB_CAMERA"
+            })
+        }).then(resp => resp.json());
+
+        const cameraIpListResp = await fetch("/cameraIpList", {
+            method: "POST",
+            headers: { "Content-Type": "application/json;" },
+            body: JSON.stringify({
+                "serverip": DBip,
+                "query": "SELECT ip_addr FROM TB_CAMERA"
+            })
+        }).then(resp => resp.json());
+
+
+//      레이더 정보(쿼리없음)
+        // const raderLiveListResp = await fetch("/raderLiveList", {
+        //     method: "POST",
+        //     headers: { "Content-Type": "application/json;" },
+        //     body: JSON.stringify({
+        //         "serverip": DBip,
+        //         "query": ""
+        //     })
+        // }).then(resp => resp.json());
+        
+
+        console.log("cameraCountResp", cameraCountResp);
+        console.log("cameraIpListResp", cameraIpListResp);
+        // console.log("raderLiveListResp", raderLiveListResp);
+
+
+            // fetchData 함수를 호출하고 결과를 처리하는 예제
+        (async () => {
+            try {
+                await fetchData();
+                // fetchData 함수에서 반환한 데이터를 이용하여 원하는 작업 수행
+            } catch (error) {
+                console.error('Error occurred:', error);
+            }
+        })();
+
+
+        // 각각의 응답 데이터를 이용하여 원하는 작업 수행
+        // liveInformation(cameraCountResp, cameraIpListResp, raderLiveListResp);
+        liveInformation(cameraCountResp, cameraIpListResp);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error;
+    }
+}
+
+
+
+
+
+
+
+
+
+

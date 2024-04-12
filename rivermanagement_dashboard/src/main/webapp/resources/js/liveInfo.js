@@ -7,25 +7,23 @@ let totalSignalCount = document.getElementById("totalSignalCount");
 let openSignalCount = document.getElementById("openSignalCount");
 let noSignalCount = document.getElementById("noSignalCount");
 
-let gateLiveList;
 let cameraCount;
-let cameraIpList;
+let cameraIpList_arry;
+let raderLiveList_arry;
 
 
-function liveInfomation(data){
+// function liveInformation(cameraCountResp, cameraIpListResp raderLiveListResp){
+function liveInformation(cameraCountResp, cameraIpListResp){
+    
+    cameraCount = cameraCountResp.result;
+    cameraIpList_arry = cameraIpListResp.result;
+    // raderLiveList_arry = raderLiveListResp.result;
+    console.log("cameraCount", cameraCount);
+    console.log("cameraIpList_arry", cameraIpList_arry);
+    // console.log("raderLiveList_arry", raderLiveList_arry);
 
-    gateLiveList = data.gateLiveList;
-    cameraCount = data.cameraCount;
-    cameraIpList = data.cameraIpList;
-    console.log("cameraIpList", cameraIpList);
 
-    // console.log("gateLiveList", gateLiveList);
-    // console.log("gateLiveList[0].gateCloseCnt", gateLiveList[0].gateCloseCnt);
-    // console.log("gateLiveList[0].gateDisableCnt", gateLiveList[0].gateDisableCnt);
-    // console.log("gateLiveList[0].gateOpenCnt", gateLiveList[0].gateOpenCnt);
-    // console.log("gateLiveList[0].gateTotalCnt", gateLiveList[0].gateTotalCnt);
-    // console.log("cameraCount", cameraCount);
-    // console.log("cameraIpList", cameraIpList);
+
 
 
     totalSignalCount.innerHTML = `${cameraCount} 개소`;
@@ -35,23 +33,28 @@ function liveInfomation(data){
     let noCount = 0;
 
     // IP 주소 확인 비동기 처리
-    cameraIpList.forEach((item) => {
-        let ipAddr = item.ipAddr;
+    cameraIpList_arry.forEach((item) => {
+        let ipAddr = item;
         checkPing(ipAddr, (status) => {
             if (status === 200) {
                 okCount++;
             } else {
                 noCount++;
             }
+            // console.log("okCount", okCount);
+            // console.log("noCount", noCount);
+            // console.log("okCount + noCount", okCount + noCount);
 
             // 모든 IP 주소 확인 완료 후 카운트 표시
-            if (okCount + noCount === cameraCount) {
+            if (okCount + noCount == cameraCount) {
                 openSignalCount.innerHTML = `${okCount} CH`;
                 noSignalCount.innerHTML = `${noCount} CH`;
             }
         });
     });
 }
+
+    
 
 function checkPing(ipAddr, callback) {
     var xhr = new XMLHttpRequest();

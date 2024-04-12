@@ -83,14 +83,14 @@
                                 <div class="dataStatsImgBox"><img src="/resources/img/icon_chLive.png" class="chLiveIcon" alt=""></div>
                                 <div class="dataStats">Total</div>
                             </div>
-                            <div class="dataCount"><span id="totalSignalCount"><span></div>
+                            <div class="dataCount"><span id="totalRaderCount"><span></div>
                         </div>
                         <div class="leftDataBox01 dataSection">
                             <div class="dataStatsBox">
                                 <div class="dataStatsImgBox"><img src="/resources/img/connect-signalOK.png" class="dataStatsImg" alt=""></div>
                                 <div class="dataStats">정상</div>
                             </div>
-                            <div class="dataCount"><span id="openSignalCount"><span></div>
+                            <div class="dataCount"><span id="openRaderCount"><span></div>
                         </div>
                         <%-- <div class="leftDataBox dataSection">
                             <div class="dataStatsBox">
@@ -104,7 +104,7 @@
                                 <div class="dataStatsImgBox"><img src="/resources/img/connect-signalBAD.png" class="dataStatsImg" alt=""></div>
                                 <div class="dataStats">통신불량</div>
                             </div>
-                            <div class="dataCount"><span id="noSignalCount"><span></div>
+                            <div class="dataCount"><span id="noRaderCount"><span></div>
                         </div>
                     </div>
                 </div>
@@ -249,7 +249,7 @@
 
     <%-- js --%>
     <script src="/resources/js/date.js"></script>
-    <%-- <script src="/resources/js/gateTable.js"></script> --%>
+    <script src="/resources/js/riverTable.js"></script>
     <script src="/resources/js/liveInfo.js"></script>
     <script src="/resources/js/lineChart.js"></script>
     <%-- <script src="/resources/js/refresh.js"></script> --%>
