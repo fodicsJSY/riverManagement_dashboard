@@ -25,10 +25,10 @@ function reiverMakeTable(data){
     var htr = document.createElement("tr");
     gateThead.appendChild(htr);
 
-    createCell(htr, "th", "gatetd gateName", "위치");
-    createCell(htr, "th", "gatetd", "수위");
-    createCell(htr, "th", "gatetd", "유속");
-    createCell(htr, "th", "gatetd", "유량");
+    createCell(htr, "th", "gatetd gateLocation", "위치");
+    createCell(htr, "th", "gatetd waterLevel", "수위");
+    createCell(htr, "th", "gatetd flowVelocity", "유속");
+    createCell(htr, "th", "gatetd flowRate", "유량");
     createCell(htr, "th", "gatetd signal", "통신상태");
 
     /* 이 아래로는 코드 수정 필요  */

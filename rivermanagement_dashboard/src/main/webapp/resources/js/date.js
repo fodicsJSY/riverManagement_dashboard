@@ -5,24 +5,8 @@
     /* 오늘 날짜로 초기화 시작*/
     // 페이지 로드 시 오늘 날짜로 초기화
     document.addEventListener("DOMContentLoaded", ()=> {
-
-        // inputDate 엘리먼트 초기화
-        var inputDate = document.getElementById('inputDate');
-        
-        // forDate 변수 초기화
-        forDate = new Date(inputDate.value);
-
-        // inputDate 엘리먼트 값 변경 이벤트 핸들러 등록
-        inputDate.addEventListener('change', function() {
-            sendToServer(this.value);
-        });
-
-        // 초기화 함수 호출
-        today();
-
-        // 날짜 보내기 
-        sendToServer(forDate);
-
+        console.log("시작");
+        initialize();
     });
     /* 오늘 날짜로 초기화 끝*/
 
@@ -31,42 +15,42 @@
     
     document.getElementById('calenderButton').addEventListener('change', function() {
         inputDate.value = this.value;
-        sendToServer(this.value);
+        sendToServer(savedIP, this.value);
     });
 
 
     document.getElementById('leftBtn').addEventListener("click", ()=>{
         // console.log("leftBtn클릭");
         beforeOneDay();
-        sendToServer();
+        sendToServer(savedIP, forDate);
     });
 
 
     document.getElementById('rightBtn').addEventListener("click", ()=>{
         // console.log("rightBtn클릭");
         afterOneDay();
-        sendToServer();
+        sendToServer(savedIP, forDate);
     });
 
 
     document.getElementById('yesterdayBtn').addEventListener("click", ()=>{
         // console.log("yesterdayBtn클릭");
         yesterday();
-        sendToServer();
+        sendToServer(savedIP, forDate);
     });
 
 
     document.getElementById('todayBtn').addEventListener("click", ()=>{
         // console.log("todayBtn클릭");
         today();
-        sendToServer();
+        sendToServer(savedIP, forDate);
     });
 
 
     document.getElementById('beforeWeekBtn').addEventListener("click", ()=>{
         // console.log("beforeWeekBtn클릭");
         before1weekBtn();
-        sendToServer();
+        sendToServer(savedIP, forDate);
     });
 
 
@@ -131,7 +115,7 @@ function before1weekBtn(){
 // input태그 날짜 직접 입력
 inputDate.addEventListener('keyup', function() {
     // console.log("inputDate 변경됨 : ", this.value);
-    sendToServer(this.value);
+    sendToServer(savedIP, this.value);
 });
 
 
@@ -140,11 +124,11 @@ inputDate.addEventListener('keyup', function() {
 let data;
 
 /* 날짜 보내기 */
-function sendToServer(value) {
+function sendToServer(savedIP, value) {
     // 형식을 YYYYMMDD로 변경
     let occuDate = formatToYYYYMMDD(value || forDate);
     console.log('Sending occuDate to server:', occuDate); // 콘솔에 occuDate 값 로그 출력
-
+    console.log('sendToServer savedIP:', savedIP); // 콘솔에 savedIP 값 로그 출력
 
 
 
@@ -154,7 +138,7 @@ function sendToServer(value) {
     // // fetchData2 함수를 호출하고 결과를 처리하는 예제
     (async () => {
         try {
-            await fetchData2();
+            await fetchData2(savedIP, occuDate);
             // fetchData 함수에서 반환한 데이터를 이용하여 원하는 작업 수행
         } catch (error) {
             console.error('Error occurred:', error);
@@ -304,9 +288,11 @@ let radioSelected = 0;
 let selectBox = document.getElementById("selectBox");
 
 
-async function fetchData(value) {
+async function fetchData(savedIP, value) {
 
-    var DBip = "172.16.0.93";
+
+    var DBip = savedIP;
+    console.log('fetchData DBip:', DBip); // 콘솔에 occuDate 값 로그 출력
 
     // 형식을 YYYYMMDD로 변경
     let occuDate = formatToYYYYMMDD(value || forDate);
@@ -432,8 +418,9 @@ async function fetchData(value) {
 
 
 
-async function fetchData2() {
-    var DBip = "172.16.0.93";
+async function fetchData2(savedIP, occuDate) {
+    var DBip = savedIP;
+    console.log('fetchData2 DBip', DBip);
     try {
         const cameraCountResp = await fetch("/cameraCount", {
             method: "POST",
@@ -473,7 +460,7 @@ async function fetchData2() {
             // fetchData 함수를 호출하고 결과를 처리하는 예제
         (async () => {
             try {
-                await fetchData();
+                await fetchData(savedIP, occuDate);
                 // fetchData 함수에서 반환한 데이터를 이용하여 원하는 작업 수행
             } catch (error) {
                 console.error('Error occurred:', error);

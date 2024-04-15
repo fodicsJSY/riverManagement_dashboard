@@ -14,6 +14,9 @@
     <%-- jquery --%>
     <script src="/resources/js/jquery/jquery.min.js"></script>
 
+    <%-- sweetalert2 --%>
+    <script src="/resources/js/sweetalert/sweetalert2.js"></script>
+
     <%-- css --%>
     <link rel="stylesheet" href="/resources/css/main.css">
     <link rel="stylesheet" href="/resources/css/mainHD.css">
@@ -158,7 +161,10 @@
                         <button class="textBtn abled" id="todayBtn">오늘</button>
                         <button class="textBtn abled" id="beforeWeekBtn">1주전</button>
                     </div>
-                    <div class="statsBtnBox"><button class="statsBtn" ><img src="/resources/img/icon_stats.png" class="statsIcon" alt="" disabled>&nbsp;통계</button></div>
+                    <div class="btnContainer">
+                        <div class="statsBtnBox"><button class="textBtn abled settingBtn" id="settingButton">설정</button></div>
+                        <div class="statsBtnBox"><button class="statsBtn" ><img src="/resources/img/icon_stats.png" class="statsIcon" alt="" disabled>&nbsp;통계</button></div>
+                    </div>
                 </div>
 
                 <div class="innerBox02 innerBox1">
@@ -259,6 +265,7 @@
     <script src="/resources/js/waterLevelChart.js"></script>
     <script src="/resources/js/flowRateChart.js"></script>
     <script src="/resources/js/main.js"></script>
+    <script src="/resources/js/dbSetting.js"></script>
 
 </body>
 </html>

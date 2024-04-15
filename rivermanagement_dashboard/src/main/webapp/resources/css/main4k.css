@@ -588,9 +588,26 @@
         height: 70%;
     }
 
-    .statsBtnBox{
-        width: 4.5%;
+    .btnContainer{
+        width: 9%;
         height: 60%;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .settingBtn{
+        position: relative;
+        /* background-color: #181818; */
+        width: 100%;
+        height: 100%;
+        
+    }
+
+
+    .statsBtnBox{
+        width: 50%;
+        height: 100%;
+        margin-right: 5px;
     }
 
     .statsBtn{
@@ -699,6 +716,33 @@
 
     /****************** 데이터 현황 테이블 끝 *******************/
 
+
+    /****************** 수위/유속/유량 현황 테이블 시작 *******************/
+
+    
+    /* 위치 */
+    .gateLocation{
+        width: 35%;
+    }
+
+    /* 수위 */
+    .waterLevel{
+        width: 15%;
+    }
+
+    /* 유속 */
+    .flowVelocity{
+        width: 15%;
+    }
+
+    /* 유량 */
+    .flowRate{
+        width: 15%;
+    }
+
+
+
+    /****************** 수위/유속/유량 현황 테이블 끝 *******************/
 
     .innerFooter{
         height: 30px;
