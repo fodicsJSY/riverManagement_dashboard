@@ -664,6 +664,11 @@ button{
 
 .tableContainer{
     width: 100%;
+}
+
+
+.tableContainer>div{
+    max-height: 360px;
     overflow-y: auto; /* 수직 스크롤을 표시합니다. */
 }
 

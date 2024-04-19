@@ -642,6 +642,11 @@
 
     .tableContainer{
         width: 100%;
+        
+    }
+
+    .tableContainer>div{
+        max-height: 507px;
         overflow-y: auto; /* 수직 스크롤을 표시합니다. */
     }
 
