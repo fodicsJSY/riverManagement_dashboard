@@ -2,12 +2,28 @@
 
 var flowRateChart;
 
+function flowRate(barData){
+    let barDataList = barData.result;
+
+    let radarCode =[];
+    let surfaceVelocity =[];
+    
+    for(let i =0; i<barDataList.length;i++){
+        console.log("for문");
+        console.log("i :" , i);
+
+        radarCode.push(barDataList[i][1]);
+        surfaceVelocity.push(barDataList[i][4]);
+    }
+    console.log("radarCode : ", radarCode);
+    console.log("surfaceVelocity : ", surfaceVelocity);
+
 flowRateChart = echarts.init(document.getElementById('flowRateChart'));
     
 option = {
     xAxis: {
         type: 'category',
-        data: ['지역명1', '지역명2', '지역명3', '지역명4', '지역명5', '지역명6', '지역명7', '지역명8', '지역명9', '지역명10'],
+        data: radarCode,
         axisLabel: {  // x축 레이블의 스타일 설정
             fontSize: 10 // 글꼴 크기 설정
         },
@@ -37,7 +53,7 @@ option = {
     },
     series: [
         {
-            data: [120, 200, 150, 80, 70, 110, 130, 180, 130, 30],
+            data: surfaceVelocity,
             type: 'bar',
             itemStyle: {
                 color: '#00A9FF' 
@@ -51,3 +67,4 @@ option = {
 };
 
 flowRateChart.setOption(option);
+}

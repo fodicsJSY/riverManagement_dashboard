@@ -1,6 +1,7 @@
 // 페이지 새로고침 타이머를 위한 전역 변수
 let refreshTimer;
-/* 1분 간격으로 페이지 리프레쉬 시작 */
+
+/* 1분 간격으로 페이지 리프레시 시작 */
 function refreshEveryMinute() {
     // 현재 시간 정보 가져오기
     var now = new Date();
@@ -20,12 +21,22 @@ function refreshEveryMinute() {
     }
     
     // 타이머 설정하여 매 1분마다 새로 고침
-    refreshTimer =setInterval(function () {
-        location.reload(true); // true 파라미터는 캐시를 무시하고 새로고침
+    refreshTimer = setInterval(function () {
+        // inputDate의 값 가져오기
+        var inputDateValue = document.getElementById("inputDate").value;
+        
+        // 오늘 날짜 가져오기
+        var today = new Date();
+        var todayFormatted = today.getFullYear() + '-' + 
+            ('0' + (today.getMonth() + 1)).slice(-2) + '-' + 
+            ('0' + today.getDate()).slice(-2);
+        
+        // 오늘과 inputDate의 값이 같으면 새로 고침
+        if (inputDateValue === todayFormatted) {
+            location.reload(true); // true 파라미터는 캐시를 무시하고 새로고침
+        }
     }, millisTillNextMinute);
 }
 
-// 1분 간격으로 페이지 리프레쉬 시작
+// 1분 간격으로 페이지 리프레시 시작
 refreshEveryMinute();
-
-
